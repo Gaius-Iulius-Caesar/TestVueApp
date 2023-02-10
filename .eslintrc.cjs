@@ -41,10 +41,14 @@ module.exports = {
         defineExpose: 'readonly',
         withDefaults: 'readonly'
     },
-    
+    settings: {
+        "import/resolver": {
+            alias: [["@", "./src"]], // 解决eslint无法识别vite配置的别名的问题
+        },
+    },
     // 这里时配置规则的,自己看情况配置
     "rules": {
-        'prettier/prettier': 2
+        'prettier/prettier': 2,
         // 'semi': ['warn', 'never'],           // 禁止尾部使用分号
         // 'no-console': 'warn',                // 禁止出现console
         // 'no-debugger': 'warn',               // 禁止出现debugger
