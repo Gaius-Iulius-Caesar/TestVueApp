@@ -1,8 +1,8 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "[javascript]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
   "editor.tabSize": 2,
   "editor.formatOnSave": true, // prettier：保存自动格式
   "editor.codeActionsOnSave": {

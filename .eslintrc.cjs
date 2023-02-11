@@ -1,5 +1,5 @@
 // "env"：一个环境定义了一组预定义的全局变量
-// "extends": 配置文件可以从基本配置扩展启用的规则集。有四种类型
+// "extends": 配置文件可以从基本配置扩展启用的规则集。有四种类型（后面覆盖前面）
 // "parserOptions"：ESLint 允许你指定你想要支持的 JavaScript 语言选项。默认情况下，ESLint 支持 ECMAScript 5 语法。你可以覆盖该设置，以启用对 ECMAScript 其它版本和 JSX 的支持。
 // "parser"：ESLint 默认使用Espree作为其解析器，你可以在配置文件中指定一个不同的解析器
 // "plugins"：ESLint 支持使用第三方插件
@@ -15,8 +15,8 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:vue/vue3-essential",
-        'plugin:prettier/recommended',
-        "eslint-config-airbnb", 
+        'plugin:prettier/recommended', // Prettier的修复通过ESlint来体现
+        "eslint-config-airbnb-base", 
         'eslint-config-prettier',
     ],
     "overrides": [],
