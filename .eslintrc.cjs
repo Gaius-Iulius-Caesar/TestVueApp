@@ -4,7 +4,7 @@
 // "parser"：ESLint 默认使用Espree作为其解析器，你可以在配置文件中指定一个不同的解析器
 // "plugins"：ESLint 支持使用第三方插件
 // "globals"：如果你想在一个源文件里使用全局变量，推荐你在 ESLint 中定义这些全局变量，这样 ESLint 就不会发出警告了。
-// "rules"：ESLint 附带有大量的规则。你可以使用注释或配置文件修改你项目中要使用的规则
+// "rules"：ESLint 附带有大量的规则。你可以使用注释或配置文件修改你项目中要使用的规则（最高优先级，不要轻易更改）
 
 module.exports = {
     "env": {
@@ -14,10 +14,19 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:vue/vue3-essential",
+        "plugin:vue/vue3-recommended",
+        "airbnb-base", // 即eslint-config-airbnb-base
         'plugin:prettier/recommended', // Prettier的修复通过ESlint来体现
-        "eslint-config-airbnb-base", 
-        'eslint-config-prettier',
+        // 等价于：
+        // {
+        //     "extends": ["prettier"],
+        //     "plugins": ["prettier"], 
+        //     "rules": {
+        //       "prettier/prettier": "error",
+        //       "arrow-body-style": "off",
+        //       "prefer-arrow-callback": "off"
+        //     }
+        //  }
     ],
     "overrides": [],
     "parserOptions": {
@@ -31,8 +40,8 @@ module.exports = {
         "parser": '@babel/eslint-parser'
     },
     "plugins": [
-        'vue',      // 引入vue的插件 vue <==> eslint-plugin-vue
-        'eslint-plugin-prettier', // 引入规范插件  prettier <==>  eslint-plugin-prettier
+        'vue',      // 即eslint-plugin-vue
+        // 'eslint-plugin-prettier', // 已由plugin:prettier/recommended引入
         'eslint-plugin-import'
     ],
     'globals': {
@@ -48,7 +57,6 @@ module.exports = {
     },
     // 这里时配置规则的,自己看情况配置
     "rules": {
-        'prettier/prettier': 2,
         // 'semi': ['warn', 'never'],           // 禁止尾部使用分号
         // 'no-console': 'warn',                // 禁止出现console
         // 'no-debugger': 'warn',               // 禁止出现debugger
