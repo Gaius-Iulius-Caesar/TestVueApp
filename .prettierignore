@@ -1,7 +1,0 @@
-node_modules
-.vscode
-.idea
-/public
-.eslintrc.cjs
-.prettierrc.cjs
-vite.config.js

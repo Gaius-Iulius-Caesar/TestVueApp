@@ -1,11 +1,23 @@
+// {
+// "editor.defaultFormatter": "esbenp.prettier-vscode",
+// "[javascript]": {
+//   "editor.defaultFormatter": "esbenp.prettier-vscode"
+// },
+//   "editor.tabSize": 2,
+//   "editor.formatOnSave": true, 
+//   "editor.codeActionsOnSave": {
+//     "source.fixAll.eslint": true, // eslint --fix:保存自动修复fix
+//   }
+// }
 {
-  // "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // "[javascript]": {
-  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
-  // },
   "editor.tabSize": 2,
-  "editor.formatOnSave": true, 
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true, // eslint --fix:保存自动修复fix
-  }
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.formatOnPaste": false, // required 
+  "editor.formatOnType": false, // required
+  "editor.formatOnSave": true, // optional 
+  "editor.formatOnSaveMode": "file", // required to format on save
+  "files.autoSave": "onFocusChange",
+  "[javascript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  } // optional but recommended
 }
