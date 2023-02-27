@@ -17,7 +17,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:vue/vue3-recommended",
-    "airbnb-base", // 即eslint-config-airbnb-base
+    "airbnb-base",
     "plugin:prettier/recommended", // Prettier的修复通过ESlint来体现
     // 等价于：
     // {
@@ -42,7 +42,7 @@ module.exports = {
     parser: "@babel/eslint-parser",
   },
   plugins: [
-    "vue", // 即eslint-plugin-vue
+    "vue",
     // 'eslint-plugin-prettier', // 已由plugin:prettier/recommended引入
     "eslint-plugin-import",
   ],
