@@ -2,6 +2,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 /* em 和 i 斜体的文字不倾斜 */
 em,
@@ -56,7 +57,7 @@ body {
 }
 /* 清除浮动 */
 /* 弃用
-.clearfix:after {
+.clearfix::after {
   visibility: hidden;
   clear: both;
   display: block;
