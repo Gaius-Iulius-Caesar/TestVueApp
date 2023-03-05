@@ -1,4 +1,7 @@
 import { defineConfig } from "vite";
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import vue from "@vitejs/plugin-vue";
 import eslintPlugin from "vite-plugin-eslint"; // 导入包
 import { resolve } from "path"; // 主要用于alias文件路径别名
@@ -10,6 +13,12 @@ export default defineConfig({
     // 增加下面的配置项,这样在运行时就能检查eslint规范
     eslintPlugin({
       include: ["src/**/*.{vue,js,jsx,cjs,mjs}", "src/*.{vue,js,jsx,cjs,mjs}"],
+    }),
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
     }),
   ],
   /**
