@@ -27,7 +27,15 @@
           show-password
         />
       </el-form-item>
-
+      <el-form-item>
+        <el-button @click="generateimg()"> 生成头像</el-button>
+        <el-avatar
+          v-if="url"
+          :size="100"
+          :src="url"
+          style="margin-left: 30px"
+        ></el-avatar>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm(ruleFormRef)"
           >注册</el-button
@@ -51,6 +59,7 @@ export default {
       checkPass: "",
       name: ""
     })
+    const url = ref()
     const ruleFormRef = ref()
     const store = useUsersStore()
     const router = useRouter()
@@ -82,7 +91,7 @@ export default {
       if (!formEl) return
       formEl.validate((valid) => {
         if (valid) {
-          const success = store.increment(ruleForm.name, ruleForm.pass)
+          const success = store.increment(ruleForm.name, ruleForm.pass, url)
           if (success) {
             alert("注册成功，即将跳转到登录页面")
             router.push({ path: "/login" })
@@ -102,7 +111,19 @@ export default {
       if (!formEl) return
       formEl.resetFields()
     }
-    return { ruleForm, rules, ruleFormRef, submitForm, resetForm }
+    function generateimg() {
+      const id = Math.floor(Math.random() * 600)
+      url.value = `https://static.nowcoder.com/head/${id}m.png`
+    }
+    return {
+      ruleForm,
+      rules,
+      ruleFormRef,
+      submitForm,
+      resetForm,
+      url,
+      generateimg
+    }
   }
 }
 </script>

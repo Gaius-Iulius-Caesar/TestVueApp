@@ -1,10 +1,10 @@
 <template>
-  <router-view></router-view>
+  <div>个人主页</div>
 </template>
 
 <script>
 export default {
-  name: "App"
+  name: "BbsHome"
 }
 </script>
 

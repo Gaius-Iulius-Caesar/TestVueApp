@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-import { reactive, ref, onMounted } from "vue"
+import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import useUsersStore from "../store/user"
 
@@ -44,17 +44,19 @@ export default {
     const ruleFormRef = ref()
     const store = useUsersStore()
     const router = useRouter()
+
+    function setCookie(name, value) {
+      const Days = 1
+      const exp = new Date()
+      exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000)
+      document.cookie = `${name}=${value};expires=${exp.toGMTString()};path=/`
+    }
     const validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入密码"))
-      } else {
-        if (ruleForm.checkPass !== "") {
-          ruleFormRef.value.validateField("checkPass")
-        }
-        callback()
       }
+      callback()
     }
-
     const rules = reactive({
       pass: [{ validator: validatePass, trigger: "blur" }],
       name: [{ required: true, msg: "用户名不能为空", trigger: "blur" }]
@@ -65,7 +67,8 @@ export default {
         if (valid) {
           if (store.exist(ruleForm.name, ruleForm.pass)) {
             alert("登陆成功，即将跳转到主页")
-            router.push({ path: "/admin" })
+            setCookie("username", ruleForm.name)
+            router.push({ path: "/bbs" })
           } else {
             alert("用户名或密码错误")
           }
@@ -80,9 +83,6 @@ export default {
       if (!formEl) return
       formEl.resetFields()
     }
-    onMounted(() => {
-      console.log("$$$$$$$$$$", store.user)
-    })
     return { ruleForm, rules, ruleFormRef, submitForm, resetForm }
   }
 }

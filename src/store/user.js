@@ -12,14 +12,20 @@ export default defineStore("users", {
   // 其它配置项
   state: () => {
     return {
-      user: [{ username: "admin", passworld: "123456" }]
+      user: [
+        {
+          username: "admin",
+          passworld: "123456",
+          url: "https://static.nowcoder.com/head/526m.png"
+        }
+      ]
     }
   },
   actions: {
-    increment(username, passworld) {
+    increment(username, passworld, url) {
       const result = this.user.find((item) => item.username === username)
       if (result === undefined) {
-        this.user.push({ username, passworld })
+        this.user.push({ username, passworld, url })
         return true
       }
       return false
@@ -30,6 +36,13 @@ export default defineStore("users", {
       )
       if (result !== undefined) {
         return true
+      }
+      return false
+    },
+    getUrl(username) {
+      const result = this.user.find((item) => item.username === username)
+      if (result !== undefined) {
+        return result.url
       }
       return false
     }

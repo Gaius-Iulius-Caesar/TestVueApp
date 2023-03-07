@@ -2,19 +2,25 @@ import { createRouter, createWebHistory } from "vue-router"
 
 const routes = [
   {
-    path: "/home",
-    name: "Test",
-    component: () => import("@/views/Home.vue")
-  },
-  {
-    path: "/admin",
-    name: "Admin",
-    component: () => import("@/views/Admin.vue"),
+    path: "/bbs",
+    name: "Bbs",
+    component: () => import("@/views/Bbs.vue"),
+    redirect: "/bbs/bbsBody?title=推荐",
     children: [
       {
         path: "bbsBody",
         name: "BbsBody",
         component: () => import("@/views/BbsBody.vue")
+      },
+      {
+        path: "announce",
+        name: "Announce",
+        component: () => import("@/views/BbsAnnounce.vue")
+      },
+      {
+        path: "home",
+        name: "BbsHome",
+        component: () => import("@/views/BbsHome.vue")
       }
     ]
   },

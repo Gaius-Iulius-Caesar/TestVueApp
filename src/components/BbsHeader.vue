@@ -19,11 +19,33 @@
       </div>
 
       <div class="loginBox">
-        <el-button type="primary" round @click="jumpTo('/login')"
-          >登陆</el-button
-        >
-        <el-button type="primary" round @click="jumpTo('/register')"
-          >注册</el-button
+        <div v-if="username">
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              <el-avatar :size="50" :src="imgurl"></el-avatar>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item @click="jumpTo('/bbs/home')"
+                  >个人主页</el-dropdown-item
+                >
+                <el-dropdown-item @click="logout()">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+        <div v-else>
+          <el-button type="primary" round @click="jumpTo('/login')"
+            >登陆</el-button
+          >
+          <el-button type="primary" round @click="jumpTo('/register')"
+            >注册</el-button
+          >
+        </div>
+      </div>
+      <div class="announceBox">
+        <el-button type="primary" round @click="jumpTo('/bbs/announce')"
+          >公告</el-button
         >
       </div>
     </div>
@@ -32,12 +54,22 @@
 
 <script>
 import { useRouter } from "vue-router"
+import { computed, inject } from "vue"
+import useUsersStore from "../store/user"
 
 export default {
   name: "BbsHeader",
   setup() {
-    function handleSelect() {
-      window.console.log("select")
+    function getCookie(objName) {
+      // 获取指定名称的cookie的值
+      const arrStr = document.cookie.split("; ")
+      for (let i = 0; i < arrStr.length; i += 1) {
+        const temp = arrStr[i].split("=")
+        if (temp[0] === objName) {
+          return decodeURI(temp[1])
+        }
+      }
+      return ""
     }
     const Tab = [
       { id: "0", type: "", content: "推荐" },
@@ -48,9 +80,19 @@ export default {
       { id: "5", type: "", content: "校园" }
     ]
     const router = useRouter()
+    const store = useUsersStore()
+    const username = getCookie("username")
+    const imgurl = computed(() => store.getUrl(username))
+    const reload = inject("reload")
+
+    function logout() {
+      document.cookie =
+        "username=''; expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;"
+      reload()
+    }
     function jump(title) {
       router.push({
-        path: "/admin/bbsBody",
+        path: "/bbs/bbsBody",
         query: {
           title
         }
@@ -61,11 +103,14 @@ export default {
         path: r
       })
     }
+
     return {
-      handleSelect,
+      logout,
       Tab,
       jump,
-      jumpTo
+      jumpTo,
+      imgurl,
+      username
     }
   }
 }
@@ -106,7 +151,12 @@ export default {
 .searchBox {
   margin-right: 50px;
 }
+
 .loginBox {
   display: flex;
+}
+
+.el-dropdown-link {
+  cursor: pointer;
 }
 </style>
