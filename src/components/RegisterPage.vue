@@ -1,83 +1,108 @@
 <template>
   <div class="box">
-    <el-form :model="form" label-width="120px">
-      <el-form-item label="Activity name">
-        <el-input v-model="form.name" />
+    <el-form
+      ref="ruleFormRef"
+      :model="ruleForm"
+      status-icon
+      :rules="rules"
+      label-width="120px"
+      class="demo-ruleForm"
+    >
+      <el-form-item label="用户名" prop="name">
+        <el-input v-model="ruleForm.name" />
       </el-form-item>
-      <el-form-item label="Activity zone">
-        <el-select v-model="form.region" placeholder="please select your zone">
-          <el-option label="Zone one" value="shanghai" />
-          <el-option label="Zone two" value="beijing" />
-        </el-select>
+      <el-form-item label="密码" prop="pass">
+        <el-input
+          v-model="ruleForm.pass"
+          type="password"
+          autocomplete="new-password"
+          show-password
+        />
       </el-form-item>
-      <el-form-item label="Activity time">
-        <el-col :span="11">
-          <el-date-picker
-            v-model="form.date1"
-            type="date"
-            placeholder="Pick a date"
-            style="width: 100%"
-          />
-        </el-col>
-        <el-col :span="2" class="text-center">
-          <span class="text-gray-500">-</span>
-        </el-col>
-        <el-col :span="11">
-          <el-time-picker
-            v-model="form.date2"
-            placeholder="Pick a time"
-            style="width: 100%"
-          />
-        </el-col>
+      <el-form-item label="确认密码" prop="checkPass">
+        <el-input
+          v-model="ruleForm.checkPass"
+          type="password"
+          autocomplete="new-password"
+          show-password
+        />
       </el-form-item>
-      <el-form-item label="Instant delivery">
-        <el-switch v-model="form.delivery" />
-      </el-form-item>
-      <el-form-item label="Activity type">
-        <el-checkbox-group v-model="form.type">
-          <el-checkbox label="Online activities" name="type" />
-          <el-checkbox label="Promotion activities" name="type" />
-          <el-checkbox label="Offline activities" name="type" />
-          <el-checkbox label="Simple brand exposure" name="type" />
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="Resources">
-        <el-radio-group v-model="form.resource">
-          <el-radio label="Sponsor" />
-          <el-radio label="Venue" />
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="Activity form">
-        <el-input v-model="form.desc" type="textarea" />
-      </el-form-item>
+
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">Create</el-button>
-        <el-button>Cancel</el-button>
+        <el-button type="primary" @click="submitForm(ruleFormRef)"
+          >注册</el-button
+        >
+        <el-button @click="resetForm(ruleFormRef)">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
+
 <script>
-import { reactive } from "vue"
+import { reactive, ref } from "vue"
+import { useRouter } from "vue-router"
+import useUsersStore from "../store/user"
 
 export default {
   name: "RegisterPage",
   setup() {
-    const form = reactive({
-      name: "",
-      region: "",
-      date1: "",
-      date2: "",
-      delivery: false,
-      type: [],
-      resource: "",
-      desc: ""
+    const ruleForm = reactive({
+      pass: "",
+      checkPass: "",
+      name: ""
     })
-
-    const onSubmit = () => {
-      console.log("submit!")
+    const ruleFormRef = ref()
+    const store = useUsersStore()
+    const router = useRouter()
+    const validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码"))
+      } else {
+        if (ruleForm.checkPass !== "") {
+          ruleFormRef.value.validateField("checkPass")
+        }
+        callback()
+      }
     }
-    return { form, onSubmit }
+    const validatePass2 = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请再次输入密码"))
+      } else if (value !== ruleForm.pass) {
+        callback(new Error("两次输入密码不一致!"))
+      } else {
+        callback()
+      }
+    }
+    const rules = reactive({
+      pass: [{ validator: validatePass, trigger: "blur" }],
+      checkPass: [{ validator: validatePass2, trigger: "blur" }],
+      name: [{ required: true, msg: "用户名不能为空", trigger: "blur" }]
+    })
+    const submitForm = async (formEl) => {
+      if (!formEl) return
+      formEl.validate((valid) => {
+        if (valid) {
+          const success = store.increment(ruleForm.name, ruleForm.pass)
+          if (success) {
+            alert("注册成功，即将跳转到登录页面")
+            router.push({ path: "/login" })
+            window.console.log("#########", store.user)
+          } else {
+            window.alert("用户名已存在")
+            return false
+          }
+        } else {
+          window.alert("error submit!")
+          return false
+        }
+        return true
+      })
+    }
+    const resetForm = (formEl) => {
+      if (!formEl) return
+      formEl.resetFields()
+    }
+    return { ruleForm, rules, ruleFormRef, submitForm, resetForm }
   }
 }
 </script>
