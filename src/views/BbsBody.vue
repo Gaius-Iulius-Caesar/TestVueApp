@@ -86,7 +86,7 @@ li {
   margin: 10px 0;
 }
 .listBox {
-  width: 900px;
+  width: 694px;
   margin: 0 auto;
 }
 .item {
@@ -94,7 +94,6 @@ li {
   flex-direction: row;
   padding: 16px 16px 16px 0;
   white-space: nowrap;
-  position: relative;
 }
 .item .imgBox {
   /* flex-shrink: 0; */

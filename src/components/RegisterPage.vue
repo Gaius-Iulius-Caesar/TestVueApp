@@ -95,7 +95,6 @@ export default {
           if (success) {
             alert("注册成功，即将跳转到登录页面")
             router.push({ path: "/login" })
-            window.console.log("#########", store.user)
           } else {
             window.alert("用户名已存在")
             return false
@@ -112,7 +111,7 @@ export default {
       formEl.resetFields()
     }
     function generateimg() {
-      const id = Math.floor(Math.random() * 600)
+      const id = Math.floor(Math.random() * 1000)
       url.value = `https://static.nowcoder.com/head/${id}m.png`
     }
     return {

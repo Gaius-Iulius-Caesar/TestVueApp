@@ -15,9 +15,12 @@
         >
       </div>
       <div class="searchBox">
-        <el-input suffix-icon="el-icon-search"></el-input>
+        <el-input>
+          <template #suffix
+            ><el-button link><i-ep-search /></el-button
+          ></template>
+        </el-input>
       </div>
-
       <div class="loginBox">
         <div v-if="username">
           <el-dropdown>
@@ -34,19 +37,24 @@
             </template>
           </el-dropdown>
         </div>
-        <div v-else>
+        <div v-else class="loginButton">
           <el-button type="primary" round @click="jumpTo('/login')"
-            >登陆</el-button
-          >
+            >登陆
+          </el-button>
           <el-button type="primary" round @click="jumpTo('/register')"
-            >注册</el-button
-          >
+            >注册
+          </el-button>
         </div>
       </div>
       <div class="announceBox">
-        <el-button type="primary" round @click="jumpTo('/bbs/announce')"
-          >公告</el-button
-        >
+        <el-badge :value="12" :max="99" class="item">
+          <el-button link @click="jumpTo('/bbs/announce')">
+            <div>
+              <i-ep-bell-filled></i-ep-bell-filled>
+              <div>公告</div>
+            </div>
+          </el-button>
+        </el-badge>
       </div>
     </div>
   </div>
@@ -55,6 +63,7 @@
 <script>
 import { useRouter } from "vue-router"
 import { computed, inject } from "vue"
+
 import useUsersStore from "../store/user"
 
 export default {
@@ -127,18 +136,14 @@ export default {
   /* margin: 0 auto; */
   display: flex;
   flex-direction: row;
-  position: relative;
   align-items: center;
   justify-content: center;
+  flex: 1 0;
 }
 
-.logo {
+.logo img {
   height: 70px;
   width: 70px;
-}
-.logo img {
-  height: 100%;
-  width: 100%;
 }
 .tabBox {
   display: flex;
@@ -155,8 +160,10 @@ export default {
 .loginBox {
   display: flex;
 }
-
-.el-dropdown-link {
-  cursor: pointer;
+.loginButton {
+  display: flex;
+}
+.announceBox {
+  margin-left: 10px;
 }
 </style>
