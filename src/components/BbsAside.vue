@@ -94,7 +94,11 @@
     </el-card>
   </div>
 </template>
-<script></script>
+<script>
+export default {
+  name: "BbsAside"
+}
+</script>
 <style scoped>
 .asideBox {
   margin-top: 11px;

@@ -5,18 +5,19 @@
       <el-main><RouterView /></el-main>
       <el-aside width="296px"> <BbsAside /></el-aside>
     </div>
-    <el-footer>Footer</el-footer>
+    <el-footer><MyFooter /></el-footer>
   </el-container>
 </template>
 
 <script>
 // import { provide, nextTick, ref } from "vue"
-import BbsHeader from "../components/BbsHeader.vue"
-import BbsAside from "../components/BbsAside.vue"
+import MyFooter from "@/components/MyFooter.vue"
+import BbsHeader from "@/components/BbsHeader.vue"
+import BbsAside from "@/components/BbsAside.vue"
 
 export default {
   name: "BbsPage",
-  components: { BbsHeader, BbsAside }
+  components: { BbsHeader, BbsAside, MyFooter }
   // setup() {
   //   const isRouterAlive = ref(true)
   //   const reload = () => {

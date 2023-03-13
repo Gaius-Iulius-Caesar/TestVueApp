@@ -55,6 +55,7 @@ declare module '@vue/runtime-core' {
     IEpWallet: typeof import('~icons/ep/wallet')['default']
     IEpWarning: typeof import('~icons/ep/warning')['default']
     LoginPage: typeof import('./components/LoginPage.vue')['default']
+    MyFooter: typeof import('./components/MyFooter.vue')['default']
     RegisterPage: typeof import('./components/RegisterPage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
