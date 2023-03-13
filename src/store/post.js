@@ -75,6 +75,7 @@ export default defineStore("posts", {
       commentList: [
         {
           id: 1,
+          parent: -1,
           belong: 1,
           content: "这是第一条评论",
           username: "admin",
@@ -82,6 +83,8 @@ export default defineStore("posts", {
           children: [
             {
               id: 1,
+              parent: 1,
+              belong: 1,
               content: "这是第一条子评论",
               replay: "admin",
               username: "admin",
@@ -89,6 +92,8 @@ export default defineStore("posts", {
             },
             {
               id: 2,
+              parent: 1,
+              belong: 1,
               content: "这是第二条子评论",
               replay: "",
               username: "1",
@@ -96,6 +101,8 @@ export default defineStore("posts", {
             },
             {
               id: 3,
+              parent: 1,
+              belong: 1,
               content: "这是第三条子评论",
               replay: "1",
               username: "2",
@@ -103,6 +110,8 @@ export default defineStore("posts", {
             },
             {
               id: 4,
+              parent: 1,
+              belong: 1,
               content: "这是第四条子评论",
               replay: "2",
               username: "3",
