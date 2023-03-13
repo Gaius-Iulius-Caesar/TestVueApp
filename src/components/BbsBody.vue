@@ -12,7 +12,11 @@
             </div>
             <div style="padding: 14px" class="itemBody">
               <h2>
-                <router-link class="title" to="">{{ theme }}</router-link>
+                <router-link
+                  class="title"
+                  :to="{ path: '/post', query: { id: i.id } }"
+                  >{{ theme }}</router-link
+                >
               </h2>
               <div class="summry">{{ i.summry }}</div>
               <div class="bottom">
@@ -28,51 +32,16 @@
 </template>
 
 <script>
-import { reactive, computed } from "vue"
+import { computed } from "vue"
 import { useRoute } from "vue-router"
+import usePostsStore from "../store/post"
 
 export default {
   name: "BbsBody",
   setup() {
-    const postList = reactive([
-      {
-        id: 1,
-        title: "测试",
-        summry: "大致内容",
-        author: "吴"
-      },
-      {
-        id: 2,
-        title: "测试",
-        summry: "大致内容",
-        author: "吴"
-      },
-      {
-        id: 3,
-        title: "测试",
-        summry: "大致内容",
-        author: "吴"
-      },
-      {
-        id: 4,
-        title: "测试",
-        summry: "大致内容",
-        author: "吴"
-      },
-      {
-        id: 5,
-        title: "测试",
-        summry: "大致内容",
-        author: "吴"
-      },
-      {
-        id: 6,
-        title: "测试",
-        summry: "大致内容",
-        author: "吴"
-      }
-    ])
     const route = useRoute()
+    const store = usePostsStore()
+    const { postList } = store
     const theme = computed(() => {
       return route.query.title
     })

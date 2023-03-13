@@ -1,38 +1,36 @@
 <template>
-  <div v-if="isRouterAlive" class="common-layout">
-    <el-container>
-      <BbsHeader />
-      <div class="mainBbs">
-        <el-main><RouterView /></el-main>
-        <el-aside width="296px"> <BbsAside /></el-aside>
-      </div>
-      <el-footer>Footer</el-footer>
-    </el-container>
-  </div>
+  <el-container>
+    <BbsHeader />
+    <div class="mainBbs">
+      <el-main><RouterView /></el-main>
+      <el-aside width="296px"> <BbsAside /></el-aside>
+    </div>
+    <el-footer>Footer</el-footer>
+  </el-container>
 </template>
 
 <script>
-import { provide, nextTick, ref } from "vue"
+// import { provide, nextTick, ref } from "vue"
 import BbsHeader from "../components/BbsHeader.vue"
 import BbsAside from "../components/BbsAside.vue"
 
 export default {
-  name: "AdminPage",
-  components: { BbsHeader, BbsAside },
-  setup() {
-    const isRouterAlive = ref(true)
-    const reload = () => {
-      isRouterAlive.value = false
-      nextTick(() => {
-        isRouterAlive.value = true
-      })
-    }
-    provide("reload", reload)
-
-    return {
-      isRouterAlive
-    }
-  }
+  name: "BbsPage",
+  components: { BbsHeader, BbsAside }
+  // setup() {
+  //   const isRouterAlive = ref(true)
+  //   const reload = () => {
+  //     isRouterAlive.value = false
+  //     nextTick(() => {
+  //       isRouterAlive.value = true
+  //     })
+  //   }
+  //   provide("reload", reload)
+  //
+  //   return {
+  //     isRouterAlive
+  //   }
+  // }
 }
 </script>
 

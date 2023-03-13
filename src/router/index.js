@@ -10,7 +10,7 @@ const routes = [
       {
         path: "bbsBody",
         name: "BbsBody",
-        component: () => import("@/views/BbsBody.vue")
+        component: () => import("@/components/BbsBody.vue")
       },
       {
         path: "announce",
@@ -33,6 +33,11 @@ const routes = [
     path: "/register",
     name: "Register",
     component: () => import("@/components/RegisterPage.vue")
+  },
+  {
+    path: "/post",
+    name: "Post",
+    component: () => import("@/views/Post.vue")
   }
 ]
 

@@ -16,9 +16,9 @@
       </div>
       <div class="searchBox">
         <el-input>
-          <template #suffix
-            ><el-button link><i-ep-search /></el-button
-          ></template>
+          <template #suffix>
+            <el-button link><i-ep-search /></el-button>
+          </template>
         </el-input>
       </div>
       <div class="loginBox">
