@@ -107,9 +107,9 @@ export default defineConfig({
     // 跨域代理配置
     proxy: {
       "/api": {
-        target: "https://blog.csdn.net/weixin_45292658",
+        target: "http://localhost:9090",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/\/api/, ""),
       },
     },
   },
