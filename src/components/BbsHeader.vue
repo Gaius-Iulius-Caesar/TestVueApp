@@ -8,9 +8,8 @@
         <el-button
           v-for="tab in Tab"
           :key="tab.id"
-          :type="tab.type"
           text
-          @click="jump(tab.content)"
+          @click="jump(tab.value)"
           >{{ tab.content }}</el-button
         >
       </div>
@@ -81,12 +80,12 @@ export default {
       return ""
     }
     const Tab = [
-      { id: "0", type: "", content: "推荐" },
-      { id: "1", type: "", content: "热榜" },
-      { id: "2", type: "", content: "高赞" },
-      { id: "3", type: "", content: "心理" },
-      { id: "4", type: "", content: "娱乐" },
-      { id: "5", type: "", content: "校园" }
+      { id: "0", value: "recommend", content: "推荐" },
+      { id: "1", value: "hot", content: "热榜" },
+      { id: "2", value: "health", content: "健康" },
+      { id: "3", value: "psychology", content: "心理" },
+      { id: "4", value: "game", content: "娱乐" },
+      { id: "5", value: "school", content: "校园" }
     ]
     const router = useRouter()
     const store = useUsersStore()
@@ -159,6 +158,9 @@ export default {
 
 .loginBox {
   display: flex;
+}
+.loginBox .el-dropdown-link {
+  outline: 0;
 }
 .loginButton {
   display: flex;

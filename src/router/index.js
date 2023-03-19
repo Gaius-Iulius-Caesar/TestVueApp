@@ -5,7 +5,7 @@ const routes = [
     path: "/bbs",
     name: "Bbs",
     component: () => import("@/views/Bbs.vue"),
-    redirect: "/bbs/bbsBody?title=推荐",
+    redirect: "/bbs/bbsBody?title=hot",
     children: [
       {
         path: "bbsBody",
@@ -38,6 +38,11 @@ const routes = [
     path: "/post",
     name: "Post",
     component: () => import("@/views/Post.vue")
+  },
+  {
+    path: "/writepost",
+    name: "WritePost",
+    component: () => import("@/views/WritePost.vue")
   }
 ]
 

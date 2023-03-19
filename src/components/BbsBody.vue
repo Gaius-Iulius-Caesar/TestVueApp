@@ -4,18 +4,15 @@
       <li v-for="i in postList" :key="i.id">
         <el-card :body-style="{ padding: '0px' }">
           <div class="item">
-            <div class="imgBox">
-              <img
-                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                class="image"
-              />
+            <div v-if="i.summaryUrl" class="imgBox">
+              <img :src="i.summaryUrl" class="image" />
             </div>
             <div style="padding: 14px" class="itemBody">
               <h2>
                 <router-link
                   class="title"
                   :to="{ path: '/post', query: { id: i.id } }"
-                  >{{ theme }}</router-link
+                  >{{ i.title }}</router-link
                 >
               </h2>
               <div class="summry">{{ i.summry }}</div>
@@ -41,11 +38,15 @@ export default {
   setup() {
     const route = useRoute()
     const store = usePostsStore()
-    const { postList } = store
-    const theme = computed(() => {
+    const category = computed(() => {
       return route.query.title
     })
-    return { postList, theme }
+
+    const postList = computed(() => {
+      return store.searchPost(category.value)
+    })
+    console.log("*&*************", postList)
+    return { postList, category }
   }
 }
 </script>

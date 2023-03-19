@@ -16,13 +16,14 @@
           </el-button>
         </div>
         <div class="btn">
-          <el-button color="#E6A23C" size="large" circle>
+          <el-button color="#E6A23C" size="large" circle @click="jump()">
             <div style="padding-top: 23px">
               <i-ep-edit></i-ep-edit>
               <div style="text-align: center; margin-top: 15px">写帖子</div>
             </div>
           </el-button>
         </div>
+
         <div class="btn">
           <el-button color="#F56C6C" size="large" circle>
             <div style="padding-top: 23px">
@@ -95,8 +96,19 @@
   </div>
 </template>
 <script>
+import { useRouter } from "vue-router"
+
 export default {
-  name: "BbsAside"
+  name: "BbsAside",
+  setup() {
+    const router = useRouter()
+    function jump() {
+      router.push({ path: "/writepost" })
+    }
+    return {
+      jump
+    }
+  }
 }
 </script>
 <style scoped>
@@ -157,5 +169,15 @@ export default {
 }
 .listBox li a:hover {
   cursor: pointer;
+}
+
+.el-select {
+  width: 300px;
+}
+.el-input {
+  width: 300px;
+}
+.dialog-footer button:first-child {
+  margin-right: 10px;
 }
 </style>

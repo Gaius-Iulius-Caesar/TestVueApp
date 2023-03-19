@@ -11,13 +11,18 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "@tinymce/tinymce-vue": "^4.0.7",
     "dayjs": "^1.11.7",
     "element-plus": "^2.2.33",
+    "is": "^3.3.0",
     "nanoid": "^4.0.1",
     "pinia": "^2.0.33",
     "pinia-plugin-persistedstate": "^3.1.0",
+    "tinymce": "^5.10.2",
     "unplugin-icons": "^0.15.3",
+    "uuid": "^9.0.0",
     "vue": "^3.2.45",
+    "vue-dompurify-html": "^4.0.0",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

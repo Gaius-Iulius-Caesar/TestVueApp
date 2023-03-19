@@ -17,6 +17,10 @@ export default defineStore("posts", {
           id: 1,
           title: "字节实习半年，我被通知转正失败",
           summry: "大致内容",
+          author: "admin",
+          category: "hot",
+          summaryUrl:
+            "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
           content:
             "“经过讨论，转正可能没有过。你技术能力还可以，但是沟通能力不够...”会议室里，坐在我对面的 leader 说着。虽然已经意料到这个结局，但是亲身经历，还是令我感到很崩溃。回到工位上，我胡乱地敲着键盘，飞书上的消息接踵而至，而我的思绪已经全然不在工作上了。\n" +
             "\n" +
@@ -33,43 +37,17 @@ export default defineStore("posts", {
             "在北京工作和生活的时光，似乎一瞬间就过去了。初来北京时，还是盛夏，穿着 T 恤，公交车轰隆来往，排放着热气，地铁的喇叭播放着扫码登记，窗明几净的字节工区，陌生的同事和 mentor，充满挑战性和新奇的工作内容...\n" +
             "也许，我们都走不出自己的浪浪山\n" +
             "\n" +
-            "失望总是贯穿人生，也许，从一开始就不该幻想走出原来的浪浪山。",
-          author: "admin"
+            "失望总是贯穿人生，也许，从一开始就不该幻想走出原来的浪浪山。"
         },
         {
           id: 2,
           title: "测试",
           summry: "大致内容",
-          content: "详细内容",
-          author: "admin"
-        },
-        {
-          id: 3,
-          title: "测试",
-          summry: "大致内容",
-          content: "详细内容",
-          author: "admin"
-        },
-        {
-          id: 4,
-          title: "测试",
-          summry: "大致内容",
-          content: "详细内容",
-          author: "admin"
-        },
-        {
-          id: 5,
-          title: "测试",
-          summry: "大致内容",
-          content: "详细内容",
-          author: "admin"
-        },
-        {
-          id: 6,
-          title: "测试",
-          summry: "大致内容",
-          content: "详细内容",
-          author: "admin"
+          author: "admin",
+          category: "recommend",
+          summaryUrl:
+            "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
+          content: "详细内容"
         }
       ],
       commentList: [
@@ -133,6 +111,24 @@ export default defineStore("posts", {
         return result
       }
       return false
+    },
+    addPost(obj) {
+      const last = this.postList.slice(-1)
+      const lastId = last[0].id
+      const addObj = obj
+      addObj.id = Number(lastId) + 1
+      this.postList.push(addObj)
+      console.log(this.postList)
+    },
+    searchPost(category) {
+      const output = []
+      this.postList.forEach((elem) => {
+        if (elem.category === category) {
+          output.push(elem)
+        }
+      })
+      console.log("(((((((((((((((", output)
+      return output
     },
     getComments(id) {
       const idNumber = Number(id)

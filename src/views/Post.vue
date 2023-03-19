@@ -20,9 +20,11 @@
         {{ postDetail.title }}
       </h2>
     </div>
-    <div class="contentBox" style="white-space: pre-wrap">
-      {{ postDetail.content }}
-    </div>
+    <div
+      v-dompurify-html="postDetail.content"
+      class="contentBox"
+      style="white-space: pre-wrap"
+    ></div>
     <BbsComment></BbsComment>
   </div>
 </template>
