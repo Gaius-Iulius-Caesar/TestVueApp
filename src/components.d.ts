@@ -66,5 +66,6 @@ declare module '@vue/runtime-core' {
     RegisterPage: typeof import('./components/RegisterPage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TEditor: typeof import('./components/TEditor.vue')['default']
   }
 }
