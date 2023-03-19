@@ -2,6 +2,16 @@ import { createRouter, createWebHistory } from "vue-router"
 
 const routes = [
   {
+    path: "/login",
+    name: "Login",
+    component: () => import("@/components/LoginPage.vue")
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: () => import("@/components/RegisterPage.vue")
+  },
+  {
     path: "/bbs",
     name: "Bbs",
     component: () => import("@/views/Bbs.vue"),
@@ -25,16 +35,6 @@ const routes = [
     ]
   },
   {
-    path: "/login",
-    name: "Login",
-    component: () => import("@/components/LoginPage.vue")
-  },
-  {
-    path: "/register",
-    name: "Register",
-    component: () => import("@/components/RegisterPage.vue")
-  },
-  {
     path: "/post",
     name: "Post",
     component: () => import("@/views/Post.vue")
@@ -43,6 +43,11 @@ const routes = [
     path: "/writepost",
     name: "WritePost",
     component: () => import("@/views/WritePost.vue")
+  },
+  {
+    path: "/course",
+    name: "Course",
+    component: () => import("@/views/Course.vue")
   }
 ]
 
