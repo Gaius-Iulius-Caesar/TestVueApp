@@ -4,12 +4,12 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component: () => import("@/components/LoginPage.vue")
+    component: () => import("@/views/LoginPage.vue")
   },
   {
     path: "/register",
     name: "Register",
-    component: () => import("@/components/RegisterPage.vue")
+    component: () => import("@/views/RegisterPage.vue")
   },
   {
     path: "/bbs",
@@ -45,9 +45,9 @@ const routes = [
     component: () => import("@/views/WritePost.vue")
   },
   {
-    path: "/course",
-    name: "Course",
-    component: () => import("@/views/Course.vue")
+    path: "/course-overview",
+    name: "CourseOverview",
+    component: () => import("@/views/CourseOverview.vue")
   }
 ]
 
