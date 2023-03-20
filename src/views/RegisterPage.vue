@@ -5,7 +5,6 @@
         margin: 300px auto;
         background-color: #fff;
         width: 400px;
-        height: 400px;
         padding: 20px;
         border-radius: 10px;
       "
@@ -50,17 +49,19 @@
             show-password
           />
         </el-form-item>
-        <el-form-item>
-          <el-button @click="generateimg()"> 生成头像</el-button>
+        <el-form-item style="height: 50px">
+          <el-button style="margin-left: 10px" @click="generateimg()"
+            >请选择你的头像
+          </el-button>
           <el-avatar
             v-if="url"
-            :size="100"
+            :size="50"
             :src="url"
             style="margin-left: 30px"
           ></el-avatar>
         </el-form-item>
         <el-form-item>
-          <div style="margin: 0 auto">
+          <div style="margin: 0px auto">
             <el-button type="primary" @click="submitForm(ruleFormRef)"
               >注册</el-button
             >
@@ -73,7 +74,7 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue"
+import { reactive, ref, onMounted } from "vue"
 import { useRouter } from "vue-router"
 import useUsersStore from "@/store/user"
 import { User, Lock } from "@element-plus/icons-vue"
@@ -142,6 +143,8 @@ export default {
       const id = Math.floor(Math.random() * 1000)
       url.value = `https://static.nowcoder.com/head/${id}m.png`
     }
+    onMounted(generateimg)
+
     return {
       ruleForm,
       rules,
