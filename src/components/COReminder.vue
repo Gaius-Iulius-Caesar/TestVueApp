@@ -1,5 +1,5 @@
 <template>
-  <div class="course-reminder-content">
+  <div class="course-overview-reminder-content">
     <el-space size="small" wrap style="width: 100%">
       <el-card
         v-for="(reminder, index) in Course.getReminder()"
@@ -7,7 +7,7 @@
         style="width: 220px"
       >
         <template #header>
-          <div class="course-reminder-content-header">
+          <div class="course-overview-reminder-content-header">
             <el-space>
               <el-icon :size="15" color="green"><EditPen /></el-icon>
               <span>{{
@@ -40,10 +40,14 @@ export default {
 </script>
 
 <style scoped>
-.course-reminder-content {
+.course-overview-reminder-content {
   padding: 0 20px;
 }
-.course-reminder-content-header span {
+.el-card:hover {
+  margin: -20px 0 0 0;
+  cursor: pointer;
+}
+.course-overview-reminder-content-header span {
   font-size: 15px;
   color: green;
 }

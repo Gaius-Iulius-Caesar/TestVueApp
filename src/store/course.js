@@ -21,6 +21,7 @@ export default defineStore("course", {
           teacher: "张三",
           abstract: "",
           semester: "",
+          rate: 0.1,
           score: {
             performance: 0,
             homework: 0,
@@ -50,6 +51,7 @@ export default defineStore("course", {
           teacher: "张三",
           abstract: "",
           semester: "",
+          rate: 0.2,
           score: {
             performance: 0,
             homework: 0,
@@ -68,10 +70,11 @@ export default defineStore("course", {
         {
           id: 3,
           name: "创意、视觉、营销、传播：理论与实践",
-          category: "compulsive",
+          category: "optional",
           teacher: "张三",
           abstract: "",
           semester: "",
+          rate: 0.5,
           score: {
             performance: 0,
             homework: 0,
@@ -106,6 +109,19 @@ export default defineStore("course", {
         })
       })
       return reminderList
+    },
+    getCOList(category) {
+      const COList = []
+      this.courseList.forEach((course) => {
+        if (course.category === category) {
+          const item = {}
+          item.name = course.name
+          item.teacher = course.teacher
+          item.rate = course.rate
+          COList.push(item)
+        }
+      })
+      return COList
     }
   }
 })
