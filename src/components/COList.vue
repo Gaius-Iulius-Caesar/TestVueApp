@@ -1,6 +1,6 @@
 <template>
   <div class="course-overview-list-content">
-    <div class="top-right" @click="$router.replace('/course-platform')">
+    <div class="bottom" @click="$router.replace('/course-platform')">
       <span>查看全部</span><el-icon :size="15"><ArrowRightBold /></el-icon>
     </div>
     <el-tabs v-model="category" class="demo-tabs" @tab-click="handleClick">
@@ -32,7 +32,7 @@
           shadow="hover"
           ><el-image
             style="width: 160px; height: 90px; border-radius: 3px"
-            src="../../public/COList.png"
+            :src="item.cover"
             fit="fill"
           >
             <template #error>
@@ -44,11 +44,12 @@
           <div class="item-content">
             <span class="course-name">{{ item.name }}</span>
             <span class="course-teacher">{{ item.teacher }}</span>
-            <el-tag class="course-rate"
-              >当前学习进度：{{ item.rate * 100 }}%</el-tag
-            >
-          </div></el-card
-        >
+            <el-progress
+              :percentage="item.rate * 100"
+              :format="format"
+              style="width: 350px"
+            /></div
+        ></el-card>
       </li>
     </ul>
   </div>
@@ -60,6 +61,7 @@ import useCourse from "@/store/course"
 
 const course = useCourse()
 const category = ref("compulsive")
+const format = (percentage) => (percentage === 100 ? "完成" : `${percentage}%`)
 const handleClick = (TabsPaneContext, Event) => {
   console.log()
 }
@@ -74,7 +76,7 @@ export default {
 .course-overview-list-content {
   position: relative;
 }
-.top-right {
+.bottom {
   position: absolute;
   top: 0;
   right: 0;
@@ -83,10 +85,10 @@ export default {
   align-items: center;
   height: 40px;
 }
-.top-right span {
+.bottom span {
   font-size: 15px;
 }
-.top-right:hover {
+.bottom:hover {
   cursor: pointer;
 }
 .paneFont {

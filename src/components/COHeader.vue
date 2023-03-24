@@ -63,8 +63,8 @@ export default {
   align-items: center;
 }
 .header-content-left .logo {
-  height: 100%;
   width: 70px;
+  height: 100%;
 }
 span {
   font-size: 18px;

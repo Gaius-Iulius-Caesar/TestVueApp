@@ -1,6 +1,6 @@
 <template>
   <el-container id="top">
-    <el-header><CourseOverviewHeader /></el-header>
+    <el-header style="padding: 0"><CourseOverviewHeader /></el-header>
     <el-main>
       <el-space
         fill
