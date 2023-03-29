@@ -53,6 +53,12 @@ const routes = [
     path: "/course-platform",
     name: "CoursePlatform",
     component: () => import("@/views/CoursePlatform.vue")
+  },
+  {
+    path: "/course-study",
+    name: "CourseStudy",
+    component: () => import("@/views/CourseStudy.vue"),
+    props: (route) => ({ query: Number(route.query.courseId) })
   }
 ]
 

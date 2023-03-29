@@ -24,6 +24,7 @@ declare module '@vue/runtime-core' {
     CPAside: typeof import('./components/CPAside.vue')['default']
     CPHeader: typeof import('./components/CPHeader.vue')['default']
     CPMain: typeof import('./components/CPMain.vue')['default']
+    CSHeader: typeof import('./components/CSHeader.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBadge: typeof import('element-plus/es')['ElBadge']

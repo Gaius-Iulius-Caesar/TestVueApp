@@ -64,7 +64,13 @@
           v-for="(item, index) in courseList"
           :key="index"
           shadow="hover"
-          :body-style="{ width: '250px', height: '270px' }"
+          :body-style="{ width: '245px', height: '270px' }"
+          @click="
+            $router.push({
+              path: '/course-study',
+              query: { courseId: item.id }
+            })
+          "
           ><el-image
             style="width: 100%; height: 50%; border-radius: 3px"
             :src="item.cover"
@@ -87,31 +93,40 @@
   </el-card>
 </template>
 <script setup>
-import { ref, reactive } from "vue"
+import { ref, reactive, onMounted } from "vue"
 import { Plus, Picture as IconPicture } from "@element-plus/icons-vue"
 import useCourse from "@/store/course"
 
+const emit = defineEmits(["changeHeight"])
 const course = useCourse()
-
-const semesterSelect = ref("ALL")
+// 当前所选的学期
+const semesterSelect = ref("")
+// 计算获得课程所在学期
 const semesterLabel = (semester) => {
   const year1 = semester.split("#")[0]
   const year2 = parseInt(year1, 10) + 1
   const term = semester.split("#")[1]
   return `${year1}-${year2}学年 第${term}学期`
 }
-
-const courseList = reactive(course.getCPMain("ALL"))
+// 点击选项更新课程列表
+const courseList = reactive([])
 const selectChange = (value) => {
   courseList.length = 0
   courseList.push(...course.getCPMain(value))
+  emit("changeHeight", courseList.length)
 }
 const selectClear = () => {
   courseList.length = 0
+  emit("changeHeight", courseList.length)
 }
-
+// 添加课程对话框
 const addCourseDialogVisible = ref(false)
 const addCourseCode = ref("")
+
+onMounted(() => {
+  // 默认选择全部课程
+  selectChange("ALL")
+})
 </script>
 <script>
 export default {
@@ -120,16 +135,18 @@ export default {
 </script>
 
 <style scoped>
-.course-platform-main-content .el-card:hover {
-  border-color: #00ff80;
-}
 .course-platform-main-header {
   display: flex;
   justify-content: space-between;
   height: 40px;
+  margin-bottom: 15px;
 }
 .course-platform-main-header span {
   font-size: 20px;
+}
+.course-platform-main-content .el-card:hover {
+  cursor: pointer;
+  border-color: #00ff80;
 }
 .item-content {
   display: flex;

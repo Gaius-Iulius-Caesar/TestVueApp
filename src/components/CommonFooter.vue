@@ -19,6 +19,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 1000px;
+  margin: 0 auto;
   color: grey;
   font-size: 20px;
   background-color: white;

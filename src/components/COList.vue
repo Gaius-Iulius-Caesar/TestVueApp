@@ -1,6 +1,6 @@
 <template>
   <div class="course-overview-list-content">
-    <div class="bottom" @click="$router.replace('/course-platform')">
+    <div class="top-right" @click="$router.push('/course-platform')">
       <span>查看全部</span><el-icon :size="15"><ArrowRightBold /></el-icon>
     </div>
     <el-tabs v-model="category" class="demo-tabs" @tab-click="handleClick">
@@ -21,7 +21,16 @@
       >
     </el-tabs>
     <ul>
-      <li v-for="(item, index) in course.getCOList(category)" :key="index">
+      <li
+        v-for="(item, index) in course.getCOList(category)"
+        :key="index"
+        @click="
+          $router.push({
+            path: '/course-study',
+            query: { courseId: item.id }
+          })
+        "
+      >
         <el-card
           :body-style="{
             display: 'flex',
@@ -76,7 +85,7 @@ export default {
 .course-overview-list-content {
   position: relative;
 }
-.bottom {
+.top-right {
   position: absolute;
   top: 0;
   right: 0;
@@ -85,15 +94,18 @@ export default {
   align-items: center;
   height: 40px;
 }
-.bottom span {
+.top-right span {
   font-size: 15px;
 }
-.bottom:hover {
+.top-right:hover {
   cursor: pointer;
 }
 .paneFont {
   font-size: 20px;
   font-weight: 600;
+}
+ul li {
+  cursor: pointer;
 }
 .item-content {
   display: flex;

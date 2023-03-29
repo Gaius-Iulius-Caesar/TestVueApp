@@ -8,7 +8,7 @@
       <div class="header-content-right">
         <el-space :size="10" spacer="|">
           <el-avatar :icon="UserFilled" />
-          <el-dropdown>
+          <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link">
               <span>用户名</span>
               <el-icon class="el-icon--right">
@@ -17,10 +17,10 @@
             </span>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item
+                <el-dropdown-item command="settings"
                   ><el-icon><Setting /></el-icon>账号设置</el-dropdown-item
                 >
-                <el-dropdown-item
+                <el-dropdown-item command="logout"
                   ><el-icon><SwitchButton /></el-icon>安全退出</el-dropdown-item
                 >
               </el-dropdown-menu>
@@ -39,6 +39,18 @@ import {
   SwitchButton,
   UserFilled
 } from "@element-plus/icons-vue"
+import router from "@/router/index"
+import { ElMessage } from "element-plus"
+import "element-plus/theme-chalk/el-loading.css"
+import "element-plus/theme-chalk/el-message.css"
+
+const handleCommand = (command) => {
+  if (command === "settings") {
+    ElMessage("功能暂未开放")
+  } else if (command === "logout") {
+    router.replace("/login")
+  }
+}
 </script>
 <script>
 export default {

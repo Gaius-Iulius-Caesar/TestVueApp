@@ -16,7 +16,7 @@
                 >
               </h2>
               <div class="summry">{{ i.summry }}</div>
-              <div class="bottom">
+              <div class="top-right">
                 <el-button text class="button">{{ i.author }}</el-button>
               </div>
             </div>
@@ -86,7 +86,7 @@ li {
   font-size: 14px;
   text-indent: 1em;
 }
-.bottom {
+.top-right {
   margin-top: 13px;
   line-height: 12px;
   display: flex;

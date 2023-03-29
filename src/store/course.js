@@ -17,7 +17,7 @@ export default defineStore("course", {
         {
           id: 1,
           name: "新时代中国特色社会主义",
-          cover: "../../public/COList.png",
+          cover: "../../public/CourseCover.png",
           category: "compulsive",
           teacher: "张三",
           abstract: "",
@@ -48,7 +48,7 @@ export default defineStore("course", {
         {
           id: 2,
           name: "智能穿戴设备：技术与时尚",
-          cover: "../../public/COList.png",
+          cover: "../../public/CourseCover.png",
           category: "compulsive",
           teacher: "张三",
           abstract: "",
@@ -72,7 +72,7 @@ export default defineStore("course", {
         {
           id: 3,
           name: "创意、视觉、营销、传播：理论与实践",
-          cover: "../../public/COList.png",
+          cover: "../../public/CourseCover.png",
           category: "optional",
           teacher: "张三",
           abstract: "",
@@ -114,10 +114,12 @@ export default defineStore("course", {
       return reminderList
     },
     getCOList(category) {
+      // 获取课程概览列表
       const COList = []
       this.courseList.forEach((course) => {
         if (course.category === category) {
           const item = {}
+          item.id = course.id
           item.name = course.name
           item.cover = course.cover
           item.teacher = course.teacher
@@ -128,6 +130,7 @@ export default defineStore("course", {
       return COList
     },
     getSemesterList() {
+      // 获取当前课程涉及的学期
       const semesterList = []
       this.courseList.forEach((course) => {
         semesterList.push(course.semester)
@@ -141,10 +144,12 @@ export default defineStore("course", {
       return semesterList
     },
     getCPMain(semester) {
+      // 获取课程概览卡片
       const CPMain = []
       this.courseList.forEach((course) => {
         if (semester === "ALL" || course.semester === semester) {
           const item = {}
+          item.id = course.id
           item.name = course.name
           item.cover = course.cover
           item.teacher = course.teacher

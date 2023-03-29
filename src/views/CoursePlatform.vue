@@ -1,21 +1,20 @@
 <template>
-  <el-container style="position: relative">
+  <el-container>
     <el-header height="260px" style="padding: 0"><CPHeader /></el-header>
-    <div
-      style="
-        position: absolute;
-        top: 156px;
-        right: 12.5%;
-        width: 75%;
-        height: 80vh;
-      "
-    >
-      <el-container style="height: 100%"
-        ><el-main><CPMain style="height: 100%" /></el-main
-        ><el-aside style="padding: 20px"><CPAside /></el-aside
-      ></el-container>
-    </div>
-    <el-footer style="margin-top: 70vh"><CommonFooter /></el-footer>
+    <el-container
+      :style="{
+        position: 'relative',
+        top: '-104px',
+        right: '-12.5%',
+        width: '75%',
+        height: mainHeight
+      }"
+      ><el-main><CPMain style="height: 100%" @change-height="change" /></el-main
+      ><el-aside style="padding: 20px"><CPAside /></el-aside
+    ></el-container>
+    <el-footer style="position: relative; top: -104px"
+      ><CommonFooter
+    /></el-footer>
   </el-container>
 </template>
 
@@ -24,6 +23,15 @@ import CPHeader from "@/components/CPHeader.vue"
 import CPMain from "@/components/CPMain.vue"
 import CPAside from "@/components/CPAside.vue"
 import CommonFooter from "@/components/CommonFooter.vue"
+
+import { ref } from "vue"
+
+const mainHeight = ref("")
+
+const change = (length) => {
+  if (length <= 10) mainHeight.value = "900px"
+  else mainHeight.value = "auto"
+}
 </script>
 <script>
 export default {
