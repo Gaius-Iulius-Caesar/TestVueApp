@@ -45,7 +45,43 @@
         </el-dropdown>
       </div>
     </div>
-    <div class="banner"></div>
+    <div class="banner">
+      <div class="banner-content">
+        <el-image
+          style="width: 200px; height: 110px"
+          :src="myCourse.cover"
+          fit="fill"
+        />
+        <div class="course-name">
+          <span>{{ myCourse.name }}</span>
+          <span>课程号：未知</span>
+        </div>
+        <div class="course-rate">
+          <span>{{ myCourse.rate * 100 }}%</span>
+          <div>
+            <span>学习进度</span>
+            <el-popover
+              trigger="hover"
+              width="200px"
+              content="此进度仅统计必学资源"
+            >
+              <template #reference>
+                <el-icon :size="14" style="margin: 1px 0 0 5px"
+                  ><WarningFilled
+                /></el-icon>
+              </template>
+            </el-popover>
+          </div>
+        </div>
+      </div>
+      <div class="banner-menu">
+        <div class="bar" @click="active">
+          <span class="item active">学习资源</span>
+          <span class="item">学习任务</span>
+          <span class="item">作业考试</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -56,13 +92,20 @@ import {
   Reading,
   Setting,
   SwitchButton,
-  UserFilled
+  UserFilled,
+  WarningFilled
 } from "@element-plus/icons-vue"
 import router from "@/router/index"
 import { ElMessage } from "element-plus"
 import "element-plus/theme-chalk/el-loading.css"
 import "element-plus/theme-chalk/el-message.css"
+import useCourse from "@/store/course"
 
+const props = defineProps({ courseId: { type: Number, default: 0 } })
+const course = useCourse()
+
+const myCourse = course.getCourseById(props.courseId)
+// 处理下拉框点击事件
 const handleCommand = (command) => {
   if (command === "overview") {
     router.replace("/course-overview")
@@ -72,6 +115,26 @@ const handleCommand = (command) => {
     ElMessage("功能暂未开放")
   } else if (command === "logout") {
     router.replace("/login")
+  }
+}
+// 实现tab切换效果
+const active = (event) => {
+  document
+    .querySelector(".banner-menu .bar > .item.active")
+    .classList.remove("active")
+  event.target.classList.add("active")
+  switch (event.target.innerText) {
+    case "学习资源":
+      router.push(`/course-study/resource?courseId=${myCourse.id}`)
+      break
+    case "学习任务":
+      router.push(`/course-study/resource?courseId=${myCourse.id}`)
+      break
+    case "作业考试":
+      router.push(`/course-study/study?courseId=${myCourse.id}`)
+      break
+    default:
+      break
   }
 }
 </script>
@@ -118,8 +181,82 @@ export default {
   outline: 0;
 }
 .banner {
+  position: relative;
   height: 260px;
-  background: url("public/CSBanner.jpg") no-repeat;
+  background: url("@/assets/image/CSBanner.jpg") no-repeat;
   background-size: cover;
+  overflow: hidden;
+}
+.banner-content {
+  display: flex;
+  width: 1200px;
+  height: 110px;
+  margin: 49px auto 0 auto;
+}
+.banner-content .course-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 850px;
+  height: 110px;
+  margin-left: 28px;
+}
+.banner-content .course-name span:first-child {
+  font-size: 28px;
+}
+.banner-content .course-name span:last-child {
+  font-size: 18px;
+}
+.banner-content .course-rate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 122px;
+  height: 110px;
+}
+.banner-content .course-rate > span {
+  font-size: 32px;
+  font-weight: 600;
+}
+.banner-content .course-rate > div {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.banner-menu {
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+.banner-menu .bar {
+  display: flex;
+  width: 1000px;
+  margin: 0 auto;
+}
+.banner-menu .bar > .item {
+  position: relative;
+  margin-right: 80px;
+  width: 86px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+}
+.banner-menu .bar > .active {
+  font-size: 20px;
+}
+.banner-menu .bar > .item.active::before {
+  content: "";
+  width: 20px;
+  height: 4px;
+  background: #fff;
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 </style>

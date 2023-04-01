@@ -58,7 +58,25 @@ const routes = [
     path: "/course-study",
     name: "CourseStudy",
     component: () => import("@/views/CourseStudy.vue"),
-    props: (route) => ({ query: Number(route.query.courseId) })
+    props: (route) => ({ query: Number(route.query.courseId) }),
+    redirect: "/course-study/resource",
+    children: [
+      {
+        path: "resource",
+        name: "Resource",
+        component: () => import("@/components/CSResource.vue")
+      },
+      {
+        path: "task",
+        name: "Task",
+        component: () => import("@/components/CSTask.vue")
+      },
+      {
+        path: "study",
+        name: "Study",
+        component: () => import("@/components/CSStudy.vue")
+      }
+    ]
   }
 ]
 

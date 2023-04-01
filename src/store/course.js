@@ -20,11 +20,12 @@ export default defineStore("course", {
           cover: "../../public/CourseCover.png",
           category: "compulsive",
           teacher: "张三",
-          abstract: "",
+          abstract:
+            "为全面贯彻党的教育方针，落实立德树人根本任务，扎实推进习近平新时代中国特色社会主义思想进课程教材，我委制定了《习近平新时代中国特色社会主义思想进课程教材指南》，现印发给你们，请在课程教材、教育教学等育人环节认真贯彻落实。",
           semester: "2019#2",
           rate: 0.1,
           score: {
-            performance: 0,
+            performance: 10,
             homework: 0,
             exam: 0
           },
@@ -79,7 +80,7 @@ export default defineStore("course", {
           semester: "2022#2",
           rate: 0.5,
           score: {
-            performance: 0,
+            performance: 60,
             homework: 0,
             exam: 0
           },
@@ -158,6 +159,15 @@ export default defineStore("course", {
         }
       })
       return CPMain
+    },
+    getCourseById(id) {
+      let out = null
+      this.courseList.forEach((course) => {
+        if (course.id === id) {
+          out = course
+        }
+      })
+      return out
     }
   }
 })

@@ -1,9 +1,9 @@
 <template>
   <div class="course-platform-header">
-    <el-image src="../../public/CPHeader.jpg" fit="cover" />
+    <el-image src="@/../public/CPHeader.jpg" fit="cover" />
     <div class="course-platform-header-content">
       <div class="school">
-        <el-image src="../../public/ustc.svg" fit="contain"></el-image>
+        <el-image src="@/../public/ustc.svg" fit="contain"></el-image>
       </div>
       <div class="welcom">
         <div class="welcom-left">
