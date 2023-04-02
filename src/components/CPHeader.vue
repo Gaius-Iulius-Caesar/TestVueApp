@@ -1,9 +1,9 @@
 <template>
   <div class="course-platform-header">
-    <el-image src="@/../public/CPHeader.jpg" fit="cover" />
+    <el-image :src="HeaderImage" fit="cover" />
     <div class="course-platform-header-content">
       <div class="school">
-        <el-image src="@/../public/ustc.svg" fit="contain"></el-image>
+        <el-image :src="USTCImg" fit="contain"></el-image>
       </div>
       <div class="welcom">
         <div class="welcom-left">
@@ -24,6 +24,8 @@
 <script setup>
 import { UserFilled } from "@element-plus/icons-vue"
 import useCourse from "@/store/course"
+import HeaderImage from "@/assets/image/CPHeader.jpg"
+import USTCImg from "@/assets/image/ustc.svg"
 
 const course = useCourse()
 </script>

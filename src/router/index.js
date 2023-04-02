@@ -69,7 +69,8 @@ const routes = [
       {
         path: "task",
         name: "Task",
-        component: () => import("@/components/CSTask.vue")
+        component: () => import("@/components/CSTask.vue"),
+        props: (route) => ({ query: Number(route.query.courseId) })
       },
       {
         path: "study",

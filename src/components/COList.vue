@@ -22,7 +22,7 @@
     </el-tabs>
     <ul>
       <li
-        v-for="(item, index) in course.getCOList(category)"
+        v-for="(item, index) in course.getCourseCardBYCategory(category)"
         :key="index"
         @click="
           $router.push({

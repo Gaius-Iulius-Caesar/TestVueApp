@@ -112,7 +112,7 @@ const semesterLabel = (semester) => {
 const courseList = reactive([])
 const selectChange = (value) => {
   courseList.length = 0
-  courseList.push(...course.getCPMain(value))
+  courseList.push(...course.getCourseCardBySemester(value))
   emit("changeHeight", courseList.length)
 }
 const selectClear = () => {

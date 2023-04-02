@@ -4,11 +4,7 @@
       <div class="header-left">
         <img class="logo" src="../../public/logo.jpg" alt="" />
         <span>线上教学平台</span>
-        <el-image
-          class="ustc"
-          src="../../public/ustc.svg"
-          fit="contain"
-        ></el-image>
+        <el-image class="ustc" :src="USTCImg" fit="contain"></el-image>
       </div>
       <div class="header-right">
         <el-button text @click="$router.push('/course-platform')"
@@ -95,6 +91,7 @@ import {
   UserFilled,
   WarningFilled
 } from "@element-plus/icons-vue"
+import USTCImg from "@/assets/image/ustc.svg"
 import router from "@/router/index"
 import { ElMessage } from "element-plus"
 import "element-plus/theme-chalk/el-loading.css"
@@ -128,7 +125,7 @@ const active = (event) => {
       router.push(`/course-study/resource?courseId=${myCourse.id}`)
       break
     case "学习任务":
-      router.push(`/course-study/resource?courseId=${myCourse.id}`)
+      router.push(`/course-study/task?courseId=${myCourse.id}`)
       break
     case "作业考试":
       router.push(`/course-study/study?courseId=${myCourse.id}`)
