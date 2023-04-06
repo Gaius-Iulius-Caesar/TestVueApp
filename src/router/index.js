@@ -64,22 +64,39 @@ const routes = [
       {
         path: "resource",
         name: "Resource",
-        component: () => import("@/components/CSResource.vue"),
+        component: () => import("@/components/CourseStudy/CSResource.vue"),
         props: (route) => ({ query: Number(route.query.courseId) })
       },
       {
         path: "task",
         name: "Task",
-        component: () => import("@/components/CSTask.vue"),
+        component: () => import("@/components/CourseStudy/CSTask.vue"),
         props: (route) => ({ query: Number(route.query.courseId) })
       },
       {
         path: "study",
         name: "Study",
-        component: () => import("@/components/CSStudy.vue"),
+        component: () => import("@/components/CourseStudy/CSStudy.vue"),
         props: (route) => ({ query: Number(route.query.courseId) })
       }
     ]
+  },
+  {
+    path: "/source-learn",
+    name: "SourceLearn",
+    component: () => import("@/views/SourceLearning.vue"),
+    children: [
+      {
+        path: "pdf",
+        Name: "PdfLearning",
+        component: () => import("@/components/SourceLearning/PdfLearning.vue")
+      }
+    ]
+  },
+  {
+    path: "/test",
+    name: "Test",
+    component: () => import("@/views/TestPage.vue")
   }
 ]
 

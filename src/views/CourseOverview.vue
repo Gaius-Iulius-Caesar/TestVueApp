@@ -57,9 +57,9 @@
 </template>
 
 <script setup>
-import CourseOverviewHeader from "@/components/COHeader.vue"
-import CourseOverviewReminder from "@/components/COReminder.vue"
-import CourseOverviewList from "@/components/COList.vue"
+import CourseOverviewHeader from "@/components/CourseOverview/COHeader.vue"
+import CourseOverviewReminder from "@/components/CourseOverview/COReminder.vue"
+import CourseOverviewList from "@/components/CourseOverview/COList.vue"
 import CommonFooter from "@/components/CommonFooter.vue"
 
 import {

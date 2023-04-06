@@ -33,7 +33,14 @@ export default defineStore("course", {
           resource: [
             {
               name: "第一章 中央重要会议精神解读",
-              files: [{ lable: "1.1 十九届六中全会精神解读", type: "pdf" }]
+              files: [
+                {
+                  lable: "1.1 十九届六中全会精神解读",
+                  type: "pdf",
+                  url: "/example.pdf",
+                  rate: 0
+                }
+              ]
             },
             {
               name: "第二章 国内经济与社会发展",

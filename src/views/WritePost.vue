@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TEditor from "@/components/TEditor.vue"
+import TEditor from "@/components/Utils/TEditor.vue"
 
 export default {
   name: "WritePost",

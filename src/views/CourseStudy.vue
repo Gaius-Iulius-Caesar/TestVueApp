@@ -10,8 +10,8 @@
   ></el-container>
 </template>
 <script setup>
-import CSHeader from "@/components/CSHeader.vue"
-import CSAside from "@/components/CSAside.vue"
+import CSHeader from "@/components/CourseStudy/CSHeader.vue"
+import CSAside from "@/components/CourseStudy/CSAside.vue"
 import CommonFooter from "@/components/CommonFooter.vue"
 
 const props = defineProps({ query: { type: Number, default: 0 } })

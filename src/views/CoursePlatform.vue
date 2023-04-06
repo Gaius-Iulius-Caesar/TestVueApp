@@ -19,9 +19,9 @@
 </template>
 
 <script setup>
-import CPHeader from "@/components/CPHeader.vue"
-import CPMain from "@/components/CPMain.vue"
-import CPAside from "@/components/CPAside.vue"
+import CPHeader from "@/components/CoursePlatform/CPHeader.vue"
+import CPMain from "@/components/CoursePlatform/CPMain.vue"
+import CPAside from "@/components/CoursePlatform/CPAside.vue"
 import CommonFooter from "@/components/CommonFooter.vue"
 
 import { ref } from "vue"
