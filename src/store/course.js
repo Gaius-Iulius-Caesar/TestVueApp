@@ -30,19 +30,48 @@ export default defineStore("course", {
             homework: 0,
             exam: 0
           },
+          resource: [
+            {
+              name: "第一章 中央重要会议精神解读",
+              files: [{ lable: "1.1 十九届六中全会精神解读", type: "pdf" }]
+            },
+            {
+              name: "第二章 国内经济与社会发展",
+              files: [
+                { lable: "2.1 打造数字经济新优势", type: "video" },
+                { lable: "2.2 打好碳达峰、碳中和这场硬仗", type: "video" }
+              ]
+            }
+          ],
+          // 作业考试的进度只有0和1，代表是否完成
           study: [
             {
-              id: 1,
               name: "第三周作业",
+              content:
+                "请认真学习第五章视频并完成相应章节测试！本章测试一共5题，每题4分，请认真完成！",
               type: "homework",
-              rate: 0.5,
+              rate: 0,
+              flag: false,
+              score: 0,
               deadline: dayjs("2023-04-25").format("YYYY-MM-DD HH:mm:ss")
             },
             {
-              id: 2,
               name: "期中考试",
+              content: "总分: 100 时长: 999分钟",
               type: "exam",
-              rate: 0.2,
+              rate: 1,
+              flag: true,
+              score: 93,
+              deadline: dayjs("2023-05-1").format("YYYY-MM-DD HH:mm:ss")
+            },
+            {
+              name: "第五周作业",
+              content:
+                "请认真学习第三章视频并完成相应章节测试！本章测试一共5题，每题4分，请认真完成！",
+              type: "homework",
+              rate: 1,
+              flag: false,
+              score: 93,
               deadline: dayjs("2023-05-1").format("YYYY-MM-DD HH:mm:ss")
             }
           ],
@@ -84,12 +113,15 @@ export default defineStore("course", {
             homework: 0,
             exam: 0
           },
+          resource: [],
           study: [
             {
-              id: 1,
               name: "实验作业",
+              content: "",
               type: "homework",
-              rate: 0.1,
+              rate: 0,
+              flag: false,
+              score: 0,
               deadline: dayjs("2023-04-02").format("YYYY-MM-DD HH:mm:ss")
             }
           ],
@@ -109,12 +141,15 @@ export default defineStore("course", {
             homework: 0,
             exam: 0
           },
+          resource: [],
           study: [
             {
-              id: 1,
               name: "期末考试",
+              content: "",
               type: "exam",
-              rate: 0.6,
+              rate: 0,
+              flag: false,
+              score: 0,
               deadline: dayjs("2023-04-05").format("YYYY-MM-DD HH:mm:ss")
             }
           ],
@@ -140,7 +175,7 @@ export default defineStore("course", {
       })
       return reminderList
     },
-    getCourseCardBYCategory(category) {
+    getCourseCardByCategory(category) {
       // 获取课程概览列表
       const COList = []
       this.courseList.forEach((course) => {
@@ -186,23 +221,17 @@ export default defineStore("course", {
       })
       return CPMain
     },
+    getResourceById(courseId) {
+      return this.courseList.find((course) => course.id === courseId).resource
+    },
+    getStudyById(courseId) {
+      return this.courseList.find((course) => course.id === courseId).study
+    },
     getTaskById(courseId) {
-      const task = []
-      this.courseList.forEach((course) => {
-        if (course.id === courseId) {
-          task.push(...course.task)
-        }
-      })
-      return task
+      return this.courseList.find((course) => course.id === courseId).task
     },
     getCourseById(id) {
-      let out = null
-      this.courseList.forEach((course) => {
-        if (course.id === id) {
-          out = course
-        }
-      })
-      return out
+      return this.courseList.find((course) => course.id === id)
     }
   }
 })

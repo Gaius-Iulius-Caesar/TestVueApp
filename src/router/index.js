@@ -64,7 +64,8 @@ const routes = [
       {
         path: "resource",
         name: "Resource",
-        component: () => import("@/components/CSResource.vue")
+        component: () => import("@/components/CSResource.vue"),
+        props: (route) => ({ query: Number(route.query.courseId) })
       },
       {
         path: "task",
@@ -75,7 +76,8 @@ const routes = [
       {
         path: "study",
         name: "Study",
-        component: () => import("@/components/CSStudy.vue")
+        component: () => import("@/components/CSStudy.vue"),
+        props: (route) => ({ query: Number(route.query.courseId) })
       }
     ]
   }

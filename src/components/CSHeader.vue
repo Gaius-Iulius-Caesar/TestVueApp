@@ -116,9 +116,11 @@ const handleCommand = (command) => {
 }
 // 实现tab切换效果
 const active = (event) => {
-  document
-    .querySelector(".banner-menu .bar > .item.active")
-    .classList.remove("active")
+  const activeBar = document.querySelector(".banner-menu .bar > .item.active")
+  if (activeBar === null || event.target.tagName !== "SPAN") {
+    return
+  }
+  activeBar.classList.remove("active")
   event.target.classList.add("active")
   switch (event.target.innerText) {
     case "学习资源":
