@@ -103,6 +103,7 @@ declare module '@vue/runtime-core' {
     Resource: typeof import('./components/CSResource.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SLHeader: typeof import('./components/SourceLearning/SLHeader.vue')['default']
     TEditor: typeof import('./components/Utils/TEditor.vue')['default']
     TestPage: typeof import('./views/TestPage.vue')['default']
     VideoPlayer: typeof import('./components/Utils/VideoPlayer.vue')['default']

@@ -22,11 +22,13 @@ import { reactive, onMounted, computed } from "vue"
 import VuePdfEmbed from "vue-pdf-embed"
 import { createLoadingTask } from "vue3-pdfjs/esm"
 
+const emit = defineEmits(["rateRefresh"])
 const props = defineProps({
   pdfUrl: {
     type: String,
     required: true
-  }
+  },
+  height: { type: String, default: "950px" }
 })
 const state = reactive({
   source: props.pdfUrl, // 预览pdf文件地址
@@ -43,6 +45,7 @@ function lastPage() {
 function nextPage() {
   if (state.pageNum < state.numPages) {
     state.pageNum += 1
+    emit("rateRefresh", state.pageNum / state.numPages)
   }
 }
 function pageZoomOut() {
@@ -71,17 +74,14 @@ export default {
 <style scoped>
 .pdf-preview {
   position: relative;
-  padding: 20px 0;
 }
 .pdf-wrap {
+  height: v-bind("props.height");
   overflow-y: auto;
 }
 .vue-pdf-embed {
-  width: 1000px;
   text-align: center;
-  border: 1px solid #e5e5e5;
   margin: 0 auto;
-  box-sizing: border-box;
 }
 
 .page-tool {

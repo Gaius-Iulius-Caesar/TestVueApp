@@ -85,11 +85,25 @@ const routes = [
     path: "/source-learn",
     name: "SourceLearn",
     component: () => import("@/views/SourceLearning.vue"),
+    props: (route) => ({
+      query: {
+        courseId: Number(route.query.cId),
+        resourceId: Number(route.query.rId),
+        fileId: Number(route.query.fId)
+      }
+    }),
     children: [
       {
         path: "pdf",
         Name: "PdfLearning",
-        component: () => import("@/components/SourceLearning/PdfLearning.vue")
+        component: () => import("@/components/SourceLearning/PdfLearning.vue"),
+        props: (route) => ({
+          query: {
+            courseId: Number(route.query.cId),
+            resourceId: Number(route.query.rId),
+            fileId: Number(route.query.fId)
+          }
+        })
       }
     ]
   },

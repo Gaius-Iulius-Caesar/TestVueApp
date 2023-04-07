@@ -1,6 +1,7 @@
 import { defineStore } from "pinia"
 import { dayjs } from "element-plus"
 import CourseCover from "@/assets/image/CourseCover.png"
+import pdfUrl from "@/assets/files/example.pdf"
 
 export default defineStore("course", {
   persist: {
@@ -35,9 +36,9 @@ export default defineStore("course", {
               name: "第一章 中央重要会议精神解读",
               files: [
                 {
-                  lable: "1.1 十九届六中全会精神解读",
+                  label: "1.1 十九届六中全会精神解读",
                   type: "pdf",
-                  url: "/example.pdf",
+                  url: pdfUrl,
                   rate: 0
                 }
               ]
@@ -45,8 +46,8 @@ export default defineStore("course", {
             {
               name: "第二章 国内经济与社会发展",
               files: [
-                { lable: "2.1 打造数字经济新优势", type: "video" },
-                { lable: "2.2 打好碳达峰、碳中和这场硬仗", type: "video" }
+                { label: "2.1 打造数字经济新优势", type: "video" },
+                { label: "2.2 打好碳达峰、碳中和这场硬仗", type: "video" }
               ]
             }
           ],
@@ -230,6 +231,9 @@ export default defineStore("course", {
     },
     getResourceById(courseId) {
       return this.courseList.find((course) => course.id === courseId).resource
+    },
+    getFile(courseId, resourceId, fileId) {
+      return this.getResourceById(courseId)[resourceId].files[fileId]
     },
     getStudyById(courseId) {
       return this.courseList.find((course) => course.id === courseId).study
