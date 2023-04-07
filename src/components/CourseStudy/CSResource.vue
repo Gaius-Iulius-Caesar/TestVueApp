@@ -57,6 +57,16 @@ const sourceStudy = (resourceIndex, fileIndex, file) => {
       }
     })
   }
+  if (file.type === "video") {
+    router.push({
+      path: "/source-learn/video",
+      query: {
+        cId: props.query,
+        rId: resourceIndex,
+        fId: fileIndex
+      }
+    })
+  }
 }
 </script>
 <script>

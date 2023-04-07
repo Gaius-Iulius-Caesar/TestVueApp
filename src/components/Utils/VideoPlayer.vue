@@ -1,19 +1,27 @@
 <template>
-  <video-player
-    ref="videoPlayer"
-    class="video-player"
-    :playsinline="true"
-    :options="playerOptions"
-    @timeupdate="onPlayerTimeupdate($event)"
-    @ready="playerReadied"
-  ></video-player>
+  <div>
+    <video-player
+      :playsinline="true"
+      :options="playerOptions"
+      @timeupdate="onPlayerTimeupdate($event)"
+    >
+    </video-player>
+  </div>
 </template>
 <script setup>
 import { reactive } from "vue"
 import { VideoPlayer } from "@videojs-player/vue"
 import "video.js/dist/video-js.css"
-import videoUrl from "@/assets/files/example.mp4"
 
+const emit = defineEmits(["rateRefresh"])
+const props = defineProps({
+  videoUrl: {
+    type: String,
+    required: true
+  },
+  width: { type: String, default: "1600px" },
+  height: { type: String, default: "900px" }
+})
 const playerOptions = reactive({
   playbackRates: [0.5, 1.0, 1.5, 2.0], // 可选的播放速度
   autoplay: false, // 如果为true,浏览器准备好时开始回放
@@ -26,7 +34,7 @@ const playerOptions = reactive({
   sources: [
     {
       type: "video/mp4", // 类型
-      src: videoUrl // url地址
+      src: props.videoUrl // url地址
     }
   ],
   poster: "", // 封面地址
@@ -35,32 +43,31 @@ const playerOptions = reactive({
   controlBar: {
     timeDivider: true, // 当前时间和持续时间的分隔符
     durationDisplay: true, // 显示持续时间
-    remainingTimeDisplay: false, // 是否显示剩余时间功能
+    remainingTimeDisplay: true, // 是否显示剩余时间功能
     fullscreenToggle: true // 是否显示全屏按钮
-  },
-  gklog: "" // 视频观看时长
+  }
 })
-
-/* 获取视频播放进度 */
-const onPlayerTimeupdate = (player) => {
-  console.log(" onPlayerTimeupdate!", player.src)
+const onPlayerTimeupdate = (e) => {
+  if (
+    e.target.childNodes !== undefined &&
+    e.target.childNodes[0].tagName === "VIDEO"
+  ) {
+    emit(
+      "rateRefresh",
+      e.target.childNodes[0].currentTime / e.target.childNodes[0].duration
+    )
+  }
 }
-/* 设置视频进度 */
-// const playerReadied = (player) => {
-//   player.currentTime = playerOptions.gklog
-// }
 </script>
 <script>
 export default {
-  name: "VideoPlayer"
+  name: "VueVideo"
 }
 </script>
 
 <style scoped>
-.video-player {
-  height: auto;
-  width: 1600px;
-  margin: 0 auto;
-  display: block;
+div {
+  width: v-bind("props.width");
+  height: v-bind("props.height");
 }
 </style>

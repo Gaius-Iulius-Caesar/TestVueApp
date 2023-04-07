@@ -104,6 +104,19 @@ const routes = [
             fileId: Number(route.query.fId)
           }
         })
+      },
+      {
+        path: "video",
+        Name: "VideoLearning",
+        component: () =>
+          import("@/components/SourceLearning/VideoLearning.vue"),
+        props: (route) => ({
+          query: {
+            courseId: Number(route.query.cId),
+            resourceId: Number(route.query.rId),
+            fileId: Number(route.query.fId)
+          }
+        })
       }
     ]
   },

@@ -2,6 +2,7 @@ import { defineStore } from "pinia"
 import { dayjs } from "element-plus"
 import CourseCover from "@/assets/image/CourseCover.png"
 import pdfUrl from "@/assets/files/example.pdf"
+import videoUrl from "@/assets/files/example.mp4"
 
 export default defineStore("course", {
   persist: {
@@ -46,8 +47,18 @@ export default defineStore("course", {
             {
               name: "第二章 国内经济与社会发展",
               files: [
-                { label: "2.1 打造数字经济新优势", type: "video" },
-                { label: "2.2 打好碳达峰、碳中和这场硬仗", type: "video" }
+                {
+                  label: "2.1 打造数字经济新优势",
+                  type: "video",
+                  url: videoUrl,
+                  rate: 0
+                },
+                {
+                  label: "2.2 打好碳达峰、碳中和这场硬仗",
+                  type: "video",
+                  url: "",
+                  rate: 0
+                }
               ]
             }
           ],

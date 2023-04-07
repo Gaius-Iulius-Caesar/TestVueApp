@@ -106,6 +106,7 @@ declare module '@vue/runtime-core' {
     SLHeader: typeof import('./components/SourceLearning/SLHeader.vue')['default']
     TEditor: typeof import('./components/Utils/TEditor.vue')['default']
     TestPage: typeof import('./views/TestPage.vue')['default']
+    VideoLearning: typeof import('./components/SourceLearning/VideoLearning.vue')['default']
     VideoPlayer: typeof import('./components/Utils/VideoPlayer.vue')['default']
   }
 }
