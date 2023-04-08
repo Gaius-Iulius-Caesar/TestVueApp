@@ -22,6 +22,19 @@ const props = defineProps({
   width: { type: String, default: "1600px" },
   height: { type: String, default: "900px" }
 })
+// 节流
+// 设置一个标志
+const throttle = (fn, delay) => {
+  let flag = true
+  return (...args) => {
+    if (!flag) return
+    flag = false
+    setTimeout(() => {
+      fn.apply(this, args)
+      flag = true
+    }, delay)
+  }
+}
 const playerOptions = reactive({
   playbackRates: [0.5, 1.0, 1.5, 2.0], // 可选的播放速度
   autoplay: false, // 如果为true,浏览器准备好时开始回放
@@ -47,7 +60,7 @@ const playerOptions = reactive({
     fullscreenToggle: true // 是否显示全屏按钮
   }
 })
-const onPlayerTimeupdate = (e) => {
+const onPlayerTimeupdate = throttle((e) => {
   if (
     e.target.childNodes !== undefined &&
     e.target.childNodes[0].tagName === "VIDEO"
@@ -57,7 +70,7 @@ const onPlayerTimeupdate = (e) => {
       e.target.childNodes[0].currentTime / e.target.childNodes[0].duration
     )
   }
-}
+}, 1000)
 </script>
 <script>
 export default {
