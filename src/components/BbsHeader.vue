@@ -20,11 +20,33 @@
           </template>
         </el-input>
       </div>
+
+      <div class="announceBox">
+        <el-badge :value="12" :max="99" class="item" style="margin-right: 24px">
+          <el-button link @click="jumpTo('/bbs/announce')">
+            <div>
+              <i-ep-bell-filled style="font-size: 20px"></i-ep-bell-filled>
+              <div style="font-size: 14px; margin-top: 3px">公告</div>
+            </div>
+          </el-button>
+        </el-badge>
+        <el-button
+          link
+          style="margin-right: 24px"
+          @click="jumpTo('/course-overview')"
+        >
+          <div>
+            <i-ep-home-filled style="font-size: 20px"></i-ep-home-filled>
+            <div style="font-size: 14px; margin-top: 3px">在线学堂</div>
+          </div>
+        </el-button>
+      </div>
+
       <div class="loginBox">
         <div v-if="username">
           <el-dropdown>
             <span class="el-dropdown-link">
-              <el-avatar :size="50" :src="imgurl"></el-avatar>
+              <el-avatar :size="40" :src="imgurl"></el-avatar>
             </span>
             <template #dropdown>
               <el-dropdown-menu>
@@ -44,16 +66,6 @@
             >注册
           </el-button>
         </div>
-      </div>
-      <div class="announceBox">
-        <el-badge :value="12" :max="99" class="item">
-          <el-button link @click="jumpTo('/bbs/announce')">
-            <div>
-              <i-ep-bell-filled></i-ep-bell-filled>
-              <div>公告</div>
-            </div>
-          </el-button>
-        </el-badge>
       </div>
     </div>
   </div>
@@ -166,6 +178,6 @@ export default {
   display: flex;
 }
 .announceBox {
-  margin-left: 10px;
+  margin-right: 20px;
 }
 </style>
