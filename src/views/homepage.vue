@@ -427,7 +427,7 @@ export default {
       },
       thischapterList: [
         {
-          name: "杂货哦划西是",
+          name: "你好",
           process: 100,
           state: "完成",
           type: "success"
