@@ -1,0 +1,7 @@
+node_modules
+.vscode
+.idea
+/public
+/src/components/Utils/TEditor.vue
+.eslintrc.cjs
+vite.config.js

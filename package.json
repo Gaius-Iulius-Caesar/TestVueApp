@@ -1,0 +1,53 @@
+{
+  "name": "test-vue-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix"
+  },
+  "dependencies": {
+    "@element-plus/icons": "^0.0.11",
+    "@element-plus/icons-vue": "^2.1.0",
+    "@tinymce/tinymce-vue": "^4.0.7",
+    "@videojs-player/vue": "^1.0.0",
+    "dayjs": "^1.11.7",
+    "element-plus": "^2.2.33",
+    "is": "^3.3.0",
+    "nanoid": "^4.0.1",
+    "pinia": "^2.0.33",
+    "pinia-plugin-persistedstate": "^3.1.0",
+    "tinymce": "^5.10.2",
+    "unplugin-icons": "^0.15.3",
+    "uuid": "^9.0.0",
+    "video.js": "^8.0.4",
+    "vue": "^3.2.45",
+    "vue-dompurify-html": "^4.0.0",
+    "vue-pdf": "^4.0.7",
+    "vue-pdf-embed": "^1.1.5",
+    "vue-router": "^4.1.6",
+    "vue3-pdfjs": "^0.1.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/eslint-parser": "^7.19.1",
+    "@iconify-json/ep": "^1.1.10",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "eslint": "^8.35.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.9.0",
+    "prettier": "^2.8.4",
+    "unplugin-auto-import": "^0.15.0",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.1.0",
+    "vite-plugin-eslint": "^1.8.1",
+    "vue-eslint-parser": "^8.3.0"
+  }
+}
