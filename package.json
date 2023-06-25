@@ -10,7 +10,6 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix"
   },
   "dependencies": {
-    "@element-plus/icons": "^0.0.11",
     "@element-plus/icons-vue": "^2.1.0",
     "@tinymce/tinymce-vue": "^4.0.7",
     "@videojs-player/vue": "^1.0.0",

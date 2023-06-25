@@ -328,7 +328,7 @@ import {
   Refresh,
   Edit
   // eslint-disable-next-line import/no-unresolved
-} from "@element-plus/icons"
+} from "@element-plus/icons-vue"
 
 export default {
   components: {
@@ -616,7 +616,7 @@ export default {
   height: auto;
   top: 85%;
   left: 50%;
-  transition: translateX(50%);
+  transform: translateX(50%);
 }
 .arrowIcon:hover {
   cursor: pointer;

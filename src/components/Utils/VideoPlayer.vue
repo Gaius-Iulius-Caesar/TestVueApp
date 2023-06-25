@@ -4,6 +4,7 @@
       :playsinline="true"
       :options="playerOptions"
       @timeupdate="onPlayerTimeupdate($event)"
+      @mounted="getPlayerState"
     >
     </video-player>
   </div>
@@ -60,17 +61,14 @@ const playerOptions = reactive({
     fullscreenToggle: true // 是否显示全屏按钮
   }
 })
-const onPlayerTimeupdate = throttle((e) => {
-  if (
-    e.target.childNodes !== undefined &&
-    e.target.childNodes[0].tagName === "VIDEO"
-  ) {
-    emit(
-      "rateRefresh",
-      e.target.childNodes[0].currentTime / e.target.childNodes[0].duration
-    )
-  }
+
+let playerState = reactive(null)
+const onPlayerTimeupdate = throttle(() => {
+  emit("rateRefresh", playerState.currentTime / playerState.duration)
 }, 1000)
+const getPlayerState = ({ video, player, state }) => {
+  playerState = state
+}
 </script>
 <script>
 export default {
