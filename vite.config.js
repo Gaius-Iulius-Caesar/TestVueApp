@@ -1,5 +1,7 @@
 import path from 'path'
 import { defineConfig } from "vite";
+import viteImagemin from "vite-plugin-imagemin"
+import viteCompression from 'vite-plugin-compression'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -19,6 +21,8 @@ export default defineConfig({
     eslintPlugin({
       include: ["src/**/*.{vue,js,jsx,cjs,mjs}", "src/*.{vue,js,jsx,cjs,mjs}"],
     }),
+    viteImagemin(),
+    viteCompression(),
     AutoImport({
       // Auto import functions from Vue, e.g. ref, reactive, toRef...
       // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
