@@ -33,16 +33,19 @@
         </el-card>
       </el-space>
       <div class="right-fix">
-        <div class="right-fix-item" @click="$router.replace('/bbs')">
+        <div class="right-fix-item" @click="$router.push('/bbs')">
           <el-icon :size="30"><House /></el-icon>
           <span>主页</span>
         </div>
         <el-divider />
-        <div class="right-fix-item">
+        <div class="right-fix-item" @click="$router.push('/bbs/announce')">
           <el-icon :size="30"><ChatSquare /></el-icon><span>消息中心</span>
         </div>
         <el-divider />
-        <div class="right-fix-item">
+        <div
+          class="right-fix-item"
+          @click="ElMessage({ message: '功能暂未开放' })"
+        >
           <el-icon :size="30"><Service /></el-icon><span>客服</span>
         </div>
         <el-divider />
@@ -69,6 +72,7 @@ import {
   QuestionFilled,
   Service
 } from "@element-plus/icons-vue"
+import { ElMessage } from "element-plus"
 </script>
 <script>
 export default {

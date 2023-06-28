@@ -125,6 +125,8 @@ import { inject, onMounted, ref, watch} from "vue";
 import {useRouter} from "vue-router"
 import useUsersStore from "../../store/user.js"
 import usePostsStore from "../../store/post.js"
+import {ElMessage} from "element-plus";
+import "element-plus/theme-chalk/el-message.css"
 export default {
   name: "TEditor",
   components: {
@@ -295,6 +297,10 @@ export default {
       reload()
     }
     function submit(){
+      if(!category.value){
+        ElMessage.info('请选择你的文章类别')
+        return
+      }
       let div = document.createElement("div")
       div.innerHTML=content.value.split("\n")[0]
       let imgReg = /<img.*?(?:>|\/>)/gi //匹配图片中的img标签

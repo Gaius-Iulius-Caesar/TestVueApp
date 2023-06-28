@@ -16,7 +16,7 @@
             <el-icon :size="20"><ArrowRight /></el-icon>
           </li>
           <li>
-            <div>
+            <div @click="ElMessage({ message: '功能暂未开放' })">
               <el-icon :size="30"><Compass /></el-icon>
               <div class="li-info">
                 <span>用户指南</span><span>您的平台操作小助手</span>
@@ -38,7 +38,7 @@
             </el-timeline-item>
           </el-timeline>
         </div>
-        <div class="bottom">
+        <div class="bottom" @click="$router.push('/bbs/announce')">
           <span>查看全部</span
           ><el-icon :size="15"><ArrowRightBold /></el-icon></div
       ></el-card>
@@ -52,6 +52,7 @@ import {
   Compass,
   Reading
 } from "@element-plus/icons-vue"
+import { ElMessage } from "element-plus"
 
 const activities = [
   {

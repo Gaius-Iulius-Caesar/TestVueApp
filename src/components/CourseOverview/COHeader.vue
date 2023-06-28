@@ -40,13 +40,12 @@ import {
   UserFilled
 } from "@element-plus/icons-vue"
 import router from "@/router/index"
-import { ElMessage } from "element-plus"
 import "element-plus/theme-chalk/el-loading.css"
 import "element-plus/theme-chalk/el-message.css"
 
 const handleCommand = (command) => {
   if (command === "settings") {
-    ElMessage("功能暂未开放")
+    router.push("/home")
   } else if (command === "logout") {
     router.replace("/login")
   }

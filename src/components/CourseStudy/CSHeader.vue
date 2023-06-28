@@ -93,7 +93,6 @@ import {
 } from "@element-plus/icons-vue"
 import USTCImg from "@/assets/image/ustc.svg"
 import router from "@/router/index"
-import { ElMessage } from "element-plus"
 import "element-plus/theme-chalk/el-loading.css"
 import "element-plus/theme-chalk/el-message.css"
 import useCourse from "@/store/course"
@@ -105,11 +104,11 @@ const myCourse = course.getCourseById(props.courseId)
 // 处理下拉框点击事件
 const handleCommand = (command) => {
   if (command === "overview") {
-    router.replace("/course-overview")
+    router.push("/course-overview")
   } else if (command === "information") {
-    ElMessage("功能暂未开放")
+    router.push("/bbs/announce")
   } else if (command === "settings") {
-    ElMessage("功能暂未开放")
+    router.push("/home")
   } else if (command === "logout") {
     router.replace("/login")
   }

@@ -46,11 +46,7 @@
               <el-button size="large" @click="addCourseDialogVisible = false"
                 >取消</el-button
               >
-              <el-button
-                type="primary"
-                size="large"
-                @click="addCourseDialogVisible = false"
-              >
+              <el-button type="primary" size="large" @click="addCourse">
                 加入
               </el-button>
             </span>
@@ -96,6 +92,7 @@
 import { ref, reactive, onMounted } from "vue"
 import { Plus, Picture as IconPicture } from "@element-plus/icons-vue"
 import useCourse from "@/store/course"
+import { ElMessage } from "element-plus"
 
 const emit = defineEmits(["changeHeight"])
 const course = useCourse()
@@ -122,7 +119,11 @@ const selectClear = () => {
 // 添加课程对话框
 const addCourseDialogVisible = ref(false)
 const addCourseCode = ref("")
-
+// 增加课程
+const addCourse = () => {
+  addCourseDialogVisible.value = false
+  ElMessage("功能暂未开放")
+}
 onMounted(() => {
   // 默认选择全部课程
   selectChange("ALL")
